@@ -129,7 +129,7 @@ class _LoginViewState extends State<LoginView> {
                                       Icons.remove_red_eye,
                                       color: visiblePassword
                                           ? Colors.grey.shade500
-                                          : Colors.amber,
+                                          : Colors.black,
                                     ),
                                     onPressed: () {
                                       setState(() {
@@ -138,7 +138,7 @@ class _LoginViewState extends State<LoginView> {
                                     },
                                   ),
                                   focusedBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.amber),
+                                    borderSide: BorderSide(color: Colors.black),
                                   ),
                                   hintText: 'Password',
                                   hintStyle:
@@ -186,7 +186,7 @@ class _LoginViewState extends State<LoginView> {
                                                 password:
                                                     passwordController.text));
                                       },
-                                      color: Colors.amber,
+                                      color: Colors.black,
                                       child: Text('Login'),
                                     ),
                                   ),

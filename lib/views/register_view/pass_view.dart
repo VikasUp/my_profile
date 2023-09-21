@@ -15,6 +15,8 @@ class PasswordView extends StatefulWidget {
 
 class _PasswordViewState extends State<PasswordView> {
   bool visiblePassword = true;
+  bool savePassword = false; // Added to track whether to save the password
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,10 +103,28 @@ class _PasswordViewState extends State<PasswordView> {
                 ),
               ),
             ),
+            // Save Password Checkbox
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+              child: Row(
+                children: [
+                  Checkbox(
+                    value: savePassword,
+                    onChanged: (value) {
+                      setState(() {
+                        savePassword = value ?? false;
+                      });
+                    },
+                  ),
+                  Text("Save Password"),
+                ],
+              ),
+            ),
+            // Confirm Button
             BlocBuilder<AppBloc, AppState>(
               builder: (context, state) {
                 return Padding(
-                  padding: const EdgeInsets.only(top: 50),
+                  padding: const EdgeInsets.only(top: 20),
                   child: Align(
                     alignment: Alignment.center,
                     child: state.isLoading
@@ -119,14 +139,24 @@ class _PasswordViewState extends State<PasswordView> {
                                   context.read<AppBloc>().add(AppEventRegister(
                                       email: emailController.text,
                                       password: passwordController.text));
+                                  if (savePassword) {
+                                    // Save password logic here
+                                    // You can use a storage solution like shared preferences or secure storage
+                                  }
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
                                       builder: (context) => HomePage(),
                                     ),
                                   );
                                 },
-                                color: Colors.amber,
-                                child: Text('Confirm'),
+                                color: const Color.fromARGB(255, 6, 6, 6),
+                                child: Text(
+                                  'Confirm',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
